@@ -16,6 +16,7 @@ import useInitialState from '../hooks/useInitialState';
 import '../styles/global.css';
 import crearProducto from '../forms/crearProducto';
 import tableProductos from '../tables/tableProductos';
+import CrearProducto from '../forms/crearProducto';
 
 const App = () => {
 	const initialState = useInitialState();
@@ -33,8 +34,9 @@ const App = () => {
 						<Route exact path="/signup" component={CreateAccount} />
 						<Route exact path="/checkout" component={Checkout} />
 						<Route exact path="/orders" component={Orders} />
-						<Route exact path="/nuevo-producto" component={crearProducto} />
+						<Route exact path="/nuevo-producto" component={CrearProducto} />
 						<Route exact path="/admin/productos" component={tableProductos} />
+						<Route exact path="/admin/producto/detalles/:id" component={CrearProducto} />
 						<Route path="*" component={NotFound} />
 					</Switch>
 				</Layout>

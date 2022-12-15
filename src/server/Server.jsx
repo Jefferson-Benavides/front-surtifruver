@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3005/';
+const BASE_URL = 'http://localhost:8080/';
 
 export async function listaProductos(){
     const options = {method: 'GET'};
@@ -19,6 +19,11 @@ export async function guardarProducto(){
 export async function eliminarProductoById(id){
     const options = {
         method: 'DELETE'}
-    const res = await fetch(BASE_URL + 'producto/save', options);
+    const res = await fetch(BASE_URL + 'producto/' + id, options);
     return await res.json();
 }
+
+export async function findProductoById(id) {
+    const res = await fetch(BASE_URL+"producto/"+id);
+    return await res.json();
+};
