@@ -1,6 +1,7 @@
 const BASE_URL = 'http://localhost:3005/';
 
 export async function listaProductos(){
+    const options = {method: 'GET'};
     const res = await fetch(BASE_URL + 'producto/all', options);
     return await res.json();
 }

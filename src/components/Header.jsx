@@ -31,6 +31,15 @@ const Header = () => {
 					<li>
 						<a href="/">Bodega</a>
 					</li>
+					<li>
+						<a href="/admin/productos">Produtos</a>
+					</li>
+					<li>
+						<a href="/admin/usuarios">Usuarios</a>
+					</li>
+					<li>
+						<a href="/admin/facturas">Facturas</a>
+					</li>
 				</ul>
 			</div>
 			<div className="navbar-right">
