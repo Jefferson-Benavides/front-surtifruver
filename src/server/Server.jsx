@@ -6,7 +6,7 @@ export async function listaProductos(){
     return await res.json();
 }
 
-export async function guardarProducto(){
+export async function guardarProducto(producto){
     const options = {
         method: 'POST',
         headers: {'Content-type': 'application/json'},
@@ -17,10 +17,9 @@ export async function guardarProducto(){
 }
 
 export async function eliminarProductoById(id){
-    const options = {
-        method: 'DELETE'}
+    const options = {method: 'DELETE'};
     const res = await fetch(BASE_URL + 'producto/' + id, options);
-    return await res.json();
+    return await res.text();
 }
 
 export async function findProductoById(id) {

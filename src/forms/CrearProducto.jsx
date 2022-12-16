@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row'
 import { Container } from 'react-bootstrap';
 import useGetProducts from '../hooks/useGetProducts';
-import { Link, useParams } from 'react-router-dom';
-import { findProductoById } from '../server/Server';
+import { Link, NavLink, useParams } from 'react-router-dom';
+import { findProductoById, guardarProducto } from '../server/Server';
 
 
 const API = 'http://localhost:8080/producto/all';
@@ -44,13 +45,29 @@ const CrearProducto = () => {
         })
     }
 
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const resp = await guardarProducto(producto);
+        if (id!==undefined) {
+        alert("Producto actualizado: " + resp.id);
+    }else{
+        alert("Producto registrado exitosamente: " + resp.id);
+    }
+    };
+
     const [disabled, setDisabled] = useState(false);
 
+    function returnToAdminProductos() {
+        NavLink()
+        console.log('Botón atrás')
+
+    };
+
     return (
-        <Container>
+        <Container className='container-form-producto'>
             <h1>  {id !== undefined ? "Detalle de producto " + id : "Agregar nuevo producto"}  </h1>
-            <Form>
-                <Form.Group>
+            <Form className='my-3' onSubmit={handleSubmit}>
+                <Form.Group className='lbl-input-grid mb-3'>
                     <Form.Label>Id: </Form.Label>
                     <Form.Control
                         type="text"
@@ -61,7 +78,7 @@ const CrearProducto = () => {
                         value={producto.id}
                     />
                 </Form.Group>
-                <Form.Group className='mb-3' controlId="formBasicEmail">
+                <Form.Group className='lbl-input-grid mb-3' controlId="formBasicEmail">
                     <Form.Label>Nombre: </Form.Label>
                     <Form.Control
                         type="text"
@@ -72,7 +89,7 @@ const CrearProducto = () => {
                         value={producto.nombre}
                     />
                 </Form.Group>
-                <Form.Group className='mb-3'>
+                <Form.Group className='lbl-input-grid mb-3'>
                     <Form.Label>Categoría: </Form.Label>
                     <Form.Control
                         type="text"
@@ -83,7 +100,7 @@ const CrearProducto = () => {
                         value={producto.categoria}
                     />
                 </Form.Group>
-                <Form.Group className='mb-3'>
+                <Form.Group className='lbl-input-grid mb-3'>
                     <Form.Label>Precio: </Form.Label>
                     <Form.Control
                         type="tel"
@@ -93,7 +110,7 @@ const CrearProducto = () => {
                         value={producto.precio}
                     />
                 </Form.Group>
-                <Form.Group className='mb-3'>
+                <Form.Group className='lbl-input-grid mb-3'>
                     <Form.Label>Inventario: </Form.Label>
                     <Form.Control
                         type="tel"
@@ -103,7 +120,7 @@ const CrearProducto = () => {
                         value={producto.inventario}
                     />
                 </Form.Group>
-                <Form.Group className='mb-3'>
+                <Form.Group className='lbl-input-grid mb-3'>
                     <Form.Label>Descripción: </Form.Label>
                     <Form.Control
                         type="text"
@@ -113,7 +130,7 @@ const CrearProducto = () => {
                         value={producto.descripcion}
                     />
                 </Form.Group>
-                <Form.Group className='mb-3'>
+                <Form.Group className='lbl-input-grid mb-3'>
                     <Form.Label>Imagen: </Form.Label>
                     <Form.Control
                         type="text"
@@ -126,9 +143,13 @@ const CrearProducto = () => {
                 <Button variant="outline-primary" type="submit">
                     Guardar
                 </Button>{' '}
+                <NavLink to='/admin/productos'>
+
                 <Button variant="outline-secondary">
                     Atrás
                 </Button>
+
+                </NavLink>
             </Form>
         </Container>
     );

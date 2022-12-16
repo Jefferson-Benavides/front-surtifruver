@@ -3,3 +3,11 @@ body {
 	font-family: 'Quicksand', sans-serif;
 	background-color: rgb(221, 232, 220);
 }
+
+.lbl-input-grid{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+.container-form-producto{
+	width: 60%;
+}
