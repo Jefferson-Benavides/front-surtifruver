@@ -31,6 +31,10 @@ const Header = () => {
 					<li>
 						<a href="/">Bodega</a>
 					</li>
+				</ul>
+			</div>
+			<div className="navbar-right">
+				<ul>
 					<li>
 						<a href="/admin/productos">Produtos</a>
 					</li>
@@ -40,10 +44,6 @@ const Header = () => {
 					<li>
 						<a href="/admin/facturas">Facturas</a>
 					</li>
-				</ul>
-			</div>
-			<div className="navbar-right">
-				<ul>
 					<li className="navbar-email" onClick={handleToggle}>
 						platzi@example.com
 					</li>

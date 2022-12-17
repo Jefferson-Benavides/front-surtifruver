@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row'
 import { Container } from 'react-bootstrap';
-import useGetProducts from '../hooks/useGetProducts';
 import { Link, NavLink, useParams } from 'react-router-dom';
-import { findProductoById, guardarProducto } from '../server/Server';
-
-
-const API = 'http://localhost:8080/producto/all';
+import { findProductoById, guardarProducto, listaProductos } from '../server/Server';
 
 const CrearProducto = () => {
 
     const { id } = useParams();
-
-    const productos = useGetProducts(API);
 
     const [producto, setProducto] = useState(
         {
@@ -28,7 +21,7 @@ const CrearProducto = () => {
         }
     );
 
-
+    
     useEffect(() => {
         if (id !== undefined) {
             setDisabled(true)
@@ -36,9 +29,10 @@ const CrearProducto = () => {
                 res => { setProducto(res) }
             )
         }
+        listaProductos();
     }, [id]);
 
-    const handleChange = ({ target }) => {
+    function handleChange({ target }) {
         setProducto({
             ...producto,
             [target.name]: target.value
@@ -48,20 +42,16 @@ const CrearProducto = () => {
     async function handleSubmit(e) {
         e.preventDefault();
         const resp = await guardarProducto(producto);
-        if (id!==undefined) {
-        alert("Producto actualizado: " + resp.id);
-    }else{
-        alert("Producto registrado exitosamente: " + resp.id);
-    }
+        if (id !== undefined) {
+            alert(resp);
+
+        } else {
+            alert(resp);
+        }
+        returnToAdminProductos();
     };
 
     const [disabled, setDisabled] = useState(false);
-
-    function returnToAdminProductos() {
-        NavLink()
-        console.log('Botón atrás')
-
-    };
 
     return (
         <Container className='container-form-producto'>
@@ -73,21 +63,23 @@ const CrearProducto = () => {
                         type="text"
                         required
                         name="id"
-                        placeholder='ej. Peras'
-                        onChange={handleChange}
+                        placeholder='ej. 12'
                         value={producto.id}
-                    />
+                        onChange={handleChange}
+                        disabled={disabled}
+                        />
                 </Form.Group>
-                <Form.Group className='lbl-input-grid mb-3' controlId="formBasicEmail">
+                <Form.Group className='lbl-input-grid mb-3'>
                     <Form.Label>Nombre: </Form.Label>
                     <Form.Control
                         type="text"
                         required
-                        name="id"
+                        name="nombre"
                         placeholder='ej. Peras'
                         onChange={handleChange}
                         value={producto.nombre}
-                    />
+                        disabled={disabled}
+                        />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
                     <Form.Label>Categoría: </Form.Label>
@@ -98,6 +90,7 @@ const CrearProducto = () => {
                         name="categoria"
                         onChange={handleChange}
                         value={producto.categoria}
+                        disabled={disabled}
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
@@ -108,6 +101,7 @@ const CrearProducto = () => {
                         name="precio"
                         onChange={handleChange}
                         value={producto.precio}
+                        disabled={disabled}
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
@@ -118,6 +112,7 @@ const CrearProducto = () => {
                         name="inventario"
                         onChange={handleChange}
                         value={producto.inventario}
+                        disabled={disabled}
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
@@ -128,6 +123,7 @@ const CrearProducto = () => {
                         name="descripcion"
                         onChange={handleChange}
                         value={producto.descripcion}
+                        disabled={disabled}
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
@@ -138,17 +134,23 @@ const CrearProducto = () => {
                         name="urlImage"
                         onChange={handleChange}
                         value={producto.urlImage}
+                        disabled={disabled}
                     />
                 </Form.Group>
-                <Button variant="outline-primary" type="submit">
-                    Guardar
+                <Button disabled={disabled} variant="outline-primary" type="submit">
+                    {id !== undefined ? "Actualizar" : "Guardar"}
                 </Button>{' '}
-                <NavLink to='/admin/productos'>
-
-                <Button variant="outline-secondary">
-                    Atrás
+                    <Button
+                        hidden={!disabled}
+                        variant="outline-warning"
+                        onClick={() => setDisabled(!disabled)}
+                    >
+                    Editar
                 </Button>
-
+                <NavLink to='/admin/productos'>
+                <Button variant="outline-secondary">
+                        Atrás
+                    </Button>
                 </NavLink>
             </Form>
         </Container>

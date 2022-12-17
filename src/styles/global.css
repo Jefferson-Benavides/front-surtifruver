@@ -11,3 +11,8 @@ body {
 .container-form-producto{
 	width: 60%;
 }
+.header-listas{
+	display: flex;
+	padding-top: 12px;
+	justify-content: space-between;
+}

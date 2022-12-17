@@ -13,7 +13,7 @@ export async function guardarProducto(producto){
         body: JSON.stringify(producto)
     }
     const res = await fetch(BASE_URL + 'producto/save', options);
-    return await res.json();
+    return await res.text();
 }
 
 export async function eliminarProductoById(id){
