@@ -64,11 +64,8 @@ const tableProductos = () => {
                                 <td>{producto.inventario}</td>
                                 <td>{producto.descripcion}</td>
                                 <td>{producto.urlImage}</td>
-                                {/* <td><Link to={`/admin/producto/detalles/id`}>Ver detalle</Link></td> */}
                                 <td><Link to={`/admin/producto/detalles/${producto.id}`}>Ver detalle</Link></td>
                                 <td><Button variant='outline-danger' onClick={() => deleteProductoById(producto.id)}>Eliminar</Button></td>
-                                {/* <td> <Link to={`/producto/${producto.id}`}>Ver detalle</Link></td>
-                                <td><Button variant='outline-danger'>Eliminar</Button></td> */}
                             </tr>
                         ))
                     }
