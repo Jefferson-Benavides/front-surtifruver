@@ -14,9 +14,9 @@ import NotFound from '../pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
 import '../styles/global.css';
-import crearProducto from '../forms/crearProducto';
-import tableProductos from '../tables/tableProductos';
-import CrearProducto from '../forms/crearProducto';
+import crearUsuarios from '../forms/CrearUsuarios';
+import tableUsuarios from '../tables/tableUsuarios';
+import CrearUsuario from '../forms/CrearUsuarios';
 
 const App = () => {
 	const initialState = useInitialState();
@@ -34,9 +34,9 @@ const App = () => {
 						<Route exact path="/signup" component={CreateAccount} />
 						<Route exact path="/checkout" component={Checkout} />
 						<Route exact path="/orders" component={Orders} />
-						<Route exact path="/nuevo-producto" component={CrearProducto} />
-						<Route exact path="/admin/productos" component={tableProductos} />
-						<Route exact path="/admin/producto/detalles/:id" component={CrearProducto} />
+						<Route exact path="/nuevo-Usuarios" component={crearUsuarios} />
+						<Route exact path="/admin/Usuarios" component={tableUsuarios} />
+						<Route exact path="/admin/Usuarios/detalles/:id" component={CrearUsuario} />
 						<Route path="*" component={NotFound} />
 					</Switch>
 				</Layout>

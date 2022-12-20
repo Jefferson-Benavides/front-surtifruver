@@ -3,21 +3,19 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Container } from 'react-bootstrap';
 import { Link, NavLink, useParams } from 'react-router-dom';
-import { findProductoById, guardarProducto, listaProductos } from '../server/Server';
+import { findUsuariosById, guardarUsuarios, listaUsuarios } from '../server/Server';
 
-const CrearProducto = () => {
+const CrearUsuarios= () => {
 
     const { id } = useParams();
 
-    const [producto, setProducto] = useState(
+    const [Usuarios, setUsuarios] = useState(
         {
             id: "",
-            nombre: "",
-            categoria: "",
-            precio: 0,
-            inventario: 0,
-            descripcion: "",
-            urlImage: ""
+            NombreCompleto: "",
+            Password: "",
+            Email: "" ,
+            Rol:""
         }
     );
 
@@ -25,37 +23,37 @@ const CrearProducto = () => {
     useEffect(() => {
         if (id !== undefined) {
             setDisabled(true)
-            findProductoById(id).then(
-                res => { setProducto(res) }
+            findUsuariosById(id).then(
+                res => { setUsuarios(res) }
             )
         }
-        listaProductos();
+        listaUsuarios();
     }, [id]);
 
     function handleChange({ target }) {
-        setProducto({
-            ...producto,
+        setUsuarios({
+            ...Usuarios,
             [target.name]: target.value
         })
     }
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const resp = await guardarProducto(producto);
+        const resp = await guardarUsuarios(Usuarios);
         if (id !== undefined) {
             alert(resp);
 
         } else {
             alert(resp);
         }
-        returnToAdminProductos();
+        returnToAdminUsuarios();
     };
 
     const [disabled, setDisabled] = useState(false);
 
     return (
-        <Container className='container-form-producto'>
-            <h1>  {id !== undefined ? "Detalle de producto " + id : "Agregar nuevo producto"}  </h1>
+        <Container className='container-form-Usuarios'>
+            <h1>  {id !== undefined ? "Detalle de Usuario " + id : "Agregar nuevo Usuario"}  </h1>
             <Form className='my-3' onSubmit={handleSubmit}>
                 <Form.Group className='lbl-input-grid mb-3'>
                     <Form.Label>Id: </Form.Label>
@@ -64,65 +62,54 @@ const CrearProducto = () => {
                         required
                         name="id"
                         placeholder='ej. 12'
-                        value={producto.id}
+                        value={Usuarios.id}
                         onChange={handleChange}
                         disabled={disabled}
                         />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Nombre: </Form.Label>
+                    <Form.Label>nombrecompleto: </Form.Label>
                     <Form.Control
                         type="text"
                         required
-                        name="nombre"
-                        placeholder='ej. Peras'
+                        name="nombrecompleto"
+                        placeholder='ej. Juan'
                         onChange={handleChange}
-                        value={producto.nombre}
+                        value={Usuarios.NombreCompleto}
                         disabled={disabled}
                         />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Categoría: </Form.Label>
+                    <Form.Label>password: </Form.Label>
                     <Form.Control
                         type="text"
                         required
-                        placeholder='ej. Frutas'
-                        name="categoria"
+                        placeholder='ej. Juan178'
+                        name="password"
                         onChange={handleChange}
-                        value={producto.categoria}
+                        value={Usuarios.Password}
                         disabled={disabled}
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Precio: </Form.Label>
+                    <Form.Label>email: </Form.Label>
                     <Form.Control
                         type="tel"
                         required
-                        name="precio"
+                        name="email"
                         onChange={handleChange}
-                        value={producto.precio}
+                        value={Usuarios.Email}
                         disabled={disabled}
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Inventario: </Form.Label>
+                    <Form.Label>Rol: </Form.Label>
                     <Form.Control
                         type="tel"
                         required
-                        name="inventario"
+                        name="rol"
                         onChange={handleChange}
-                        value={producto.inventario}
-                        disabled={disabled}
-                    />
-                </Form.Group>
-                <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Descripción: </Form.Label>
-                    <Form.Control
-                        type="text"
-                        required
-                        name="descripcion"
-                        onChange={handleChange}
-                        value={producto.descripcion}
+                        value={Usuarios.Rol}
                         disabled={disabled}
                     />
                 </Form.Group>
@@ -133,7 +120,7 @@ const CrearProducto = () => {
                         required
                         name="urlImage"
                         onChange={handleChange}
-                        value={producto.urlImage}
+                        value={Usuarios.urlImage}
                         disabled={disabled}
                     />
                 </Form.Group>
@@ -147,7 +134,7 @@ const CrearProducto = () => {
                     >
                     Editar
                 </Button>
-                <NavLink to='/admin/productos'>
+                <NavLink to='/admin/Usuarios'>
                 <Button variant="outline-secondary">
                         Atrás
                     </Button>
@@ -157,4 +144,4 @@ const CrearProducto = () => {
     );
 };
 
-export default CrearProducto;
+export default CrearUsuarios;

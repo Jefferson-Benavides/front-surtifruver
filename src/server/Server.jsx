@@ -1,28 +1,28 @@
-const BASE_URL = 'http://localhost:8080/';
+const BASE_URL = 'http://129.213.20.238:8080/';
 
-export async function listaProductos(){
+export async function listaUsuarios(){
     const options = {method: 'GET'};
-    const res = await fetch(BASE_URL + 'producto/all', options);
+    const res = await fetch(BASE_URL + 'usuarios/all', options);
     return await res.json();
 }
 
-export async function guardarProducto(producto){
+export async function guardarUsuarios(Usuarios){
     const options = {
         method: 'POST',
         headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(producto)
+        body: JSON.stringify(Usuarios)
     }
-    const res = await fetch(BASE_URL + 'producto/save', options);
+    const res = await fetch(BASE_URL + 'usuarios/save', options);
     return await res.text();
 }
 
-export async function eliminarProductoById(id){
+export async function eliminarUsuariosById(id){
     const options = {method: 'DELETE'};
-    const res = await fetch(BASE_URL + 'producto/' + id, options);
+    const res = await fetch(BASE_URL + 'usuarios/' + id, options);
     return await res.text();
 }
 
-export async function findProductoById(id) {
-    const res = await fetch(BASE_URL+"producto/"+id);
+export async function findUsuariosById(id) {
+    const res = await fetch(BASE_URL+"usuarios/"+id);
     return await res.json();
 };

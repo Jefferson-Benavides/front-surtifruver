@@ -3,7 +3,7 @@ import ProductItem from '../components/ProductItem';
 import useGetProducts from '../hooks/useGetProducts';
 import '@styles/ProductList.scss';
 
-const API = 'http://localhost:8080/producto/all';
+const API = 'http://129.213.20.238:8080/producto/all';
 //const API = 'https://api.escuelajs.co/api/v1/products';
 
 const ProductList = () => {
