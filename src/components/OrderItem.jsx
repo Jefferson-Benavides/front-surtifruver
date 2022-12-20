@@ -19,7 +19,7 @@ const OrderItem = ({ product }) => {
 			<p>{product.nombre}</p>
 			<div className='modificadorCantProductos'>
 				<img src={arrow} alt="" />
-				<span>508</span>
+				<span>1</span>
 				<img src={arrow} alt="" />
 			</div>
 			<p>$ {product.precio}</p>

@@ -45,7 +45,7 @@ const Header = () => {
 						<a href="/admin/facturas">Facturas</a>
 					</li>
 					<li className="navbar-email" onClick={handleToggle}>
-						platzi@example.com
+						admin@surtifruver.com
 					</li>
 					<li className="navbar-shopping-cart"
 						onClick={() => setToggleOrders(!toggleOrders)}
