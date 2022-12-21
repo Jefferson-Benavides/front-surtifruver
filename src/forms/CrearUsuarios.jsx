@@ -23,7 +23,7 @@ const CrearUsuarios= () => {
     useEffect(() => {
         if (id !== undefined) {
             setDisabled(true)
-            findUsuariosById(id).then(
+            findUsuarioById(id).then(
                 res => { setUsuarios(res) }
             )
         }
