@@ -58,7 +58,7 @@ const tableUsuarios = () => {
                                 <td>{usuario.password}</td>
                                 <td>{usuario.email}</td>
                                 <td>{usuario.rol}</td>
-                                <td><Link to={`/admin/usuario/detalles/${usuario.id}`}>Ver detalle</Link></td>
+                                <td><Link to={`/admin/usuarios/detalles/${usuario.id}`}>Ver detalle</Link></td>
                                 <td><Button variant='outline-danger' onClick={() => deleteUsuarioById(usuario.id)}>Eliminar</Button></td>
                                 {/* <td> <Link to={`/usuario/${usuario.id}`}>Ver detalle</Link></td>
                                 <td><Button variant='outline-danger'>Eliminar</Button></td> */}
