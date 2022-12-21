@@ -6,6 +6,7 @@ import menu from '@icons/icon_menu.svg';
 import logo from '@logos/logo-nav-surtifruver.svg';
 import AppContext from '../context/AppContext';
 import shoppingCart from '@icons/icon_shopping_cart.svg';
+import { Link } from 'react-router-dom';
 
 
 const Header = () => {
@@ -20,18 +21,9 @@ const Header = () => {
 		<nav>
 			<img src={menu} alt="menu" className="menu" />
 			<div className="navbar-left">
+				<Link to={'/'}>
 				<img src={logo} alt="logo" className="nav-logo" />
-				<ul>
-					<li>
-						<a href="/">Todo</a>
-					</li>
-					<li>
-						<a href="/">Frutas</a>
-					</li>
-					<li>
-						<a href="/">Bodega</a>
-					</li>
-				</ul>
+				</Link>
 			</div>
 			<div className="navbar-right">
 				<ul>
@@ -45,7 +37,7 @@ const Header = () => {
 						<a href="/admin/facturas">Facturas</a>
 					</li>
 					<li className="navbar-email" onClick={handleToggle}>
-						platzi@example.com
+						admin@surtifruver.com
 					</li>
 					<li className="navbar-shopping-cart"
 						onClick={() => setToggleOrders(!toggleOrders)}
