@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Container } from 'react-bootstrap';
 import { Link, NavLink, useParams } from 'react-router-dom';
-import { findUsuariosById, guardarUsuarios, listaUsuarios } from '../server/Server';
+import { findUsuarioById, guardarUsuarios, listaUsuarios } from '../server/Server';
 
 const CrearUsuarios= () => {
 
@@ -96,6 +96,7 @@ const CrearUsuarios= () => {
                     <Form.Control
                         type="tel"
                         required
+                        placeholder='ej. Juan@unab.com'
                         name="email"
                         onChange={handleChange}
                         value={Usuarios.Email}
@@ -107,20 +108,10 @@ const CrearUsuarios= () => {
                     <Form.Control
                         type="tel"
                         required
+                        placeholder='Cliente'
                         name="rol"
                         onChange={handleChange}
                         value={Usuarios.Rol}
-                        disabled={disabled}
-                    />
-                </Form.Group>
-                <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Imagen: </Form.Label>
-                    <Form.Control
-                        type="text"
-                        required
-                        name="urlImage"
-                        onChange={handleChange}
-                        value={Usuarios.urlImage}
                         disabled={disabled}
                     />
                 </Form.Group>

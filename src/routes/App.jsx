@@ -34,9 +34,9 @@ const App = () => {
 						<Route exact path="/signup" component={CreateAccount} />
 						<Route exact path="/checkout" component={Checkout} />
 						<Route exact path="/orders" component={Orders} />
-						<Route exact path="/nuevo-Usuarios" component={crearUsuarios} />
+						<Route exact path="/nuevo-Usuario" component={crearUsuarios} />
 						<Route exact path="/admin/Usuarios" component={tableUsuarios} />
-						<Route exact path="/admin/Usuarios/detalles/:id" component={CrearUsuario} />
+						<Route exact path="/admin/Usuario/detalles/:id" component={CrearUsuario} />
 						<Route path="*" component={NotFound} />
 					</Switch>
 				</Layout>
