@@ -12,7 +12,7 @@ const CrearUsuarios= () => {
     const [Usuarios, setUsuarios] = useState(
         {
             id: "",
-            NombreCompleto: "",
+            nombreCompleto: "",
             Password: "",
             Email: "" ,
             Rol:""
@@ -75,7 +75,7 @@ const CrearUsuarios= () => {
                         name="nombrecompleto"
                         placeholder='ej. Juan'
                         onChange={handleChange}
-                        value={Usuarios.NombreCompleto}
+                        value={Usuarios.nombreCompleto}
                         disabled={disabled}
                         />
                 </Form.Group>
