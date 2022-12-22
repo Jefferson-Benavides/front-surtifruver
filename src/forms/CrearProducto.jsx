@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
 import { Link, NavLink, useParams } from 'react-router-dom';
 import { findProductoById, guardarProducto, listaProductos } from '../server/Server';
@@ -21,7 +23,7 @@ const CrearProducto = () => {
         }
     );
 
-    
+
     useEffect(() => {
         if (id !== undefined) {
             setDisabled(true)
@@ -58,7 +60,7 @@ const CrearProducto = () => {
             <h1>  {id !== undefined ? "Detalle de producto " + id : "Agregar nuevo producto"}  </h1>
             <Form className='my-3' onSubmit={handleSubmit}>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Id: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Id: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -67,10 +69,10 @@ const CrearProducto = () => {
                         value={producto.id}
                         onChange={handleChange}
                         disabled={disabled}
-                        />
+                    />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Nombre: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Nombre: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -79,10 +81,10 @@ const CrearProducto = () => {
                         onChange={handleChange}
                         value={producto.nombre}
                         disabled={disabled}
-                        />
+                    />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Categoría: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Categoría: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -94,7 +96,7 @@ const CrearProducto = () => {
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Precio: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Precio: </Form.Label>
                     <Form.Control
                         type="tel"
                         required
@@ -105,7 +107,7 @@ const CrearProducto = () => {
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Inventario: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Inventario: </Form.Label>
                     <Form.Control
                         type="tel"
                         required
@@ -116,7 +118,7 @@ const CrearProducto = () => {
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Descripción: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Descripción: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -127,7 +129,7 @@ const CrearProducto = () => {
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Imagen: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Imagen: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -137,21 +139,31 @@ const CrearProducto = () => {
                         disabled={disabled}
                     />
                 </Form.Group>
-                <Button disabled={disabled} variant="outline-primary" type="submit">
-                    {id !== undefined ? "Actualizar" : "Guardar"}
-                </Button>{' '}
-                    <Button
-                        hidden={!disabled}
-                        variant="outline-warning"
-                        onClick={() => setDisabled(!disabled)}
-                    >
-                    Editar
-                </Button>
-                <NavLink to='/admin/productos'>
-                <Button variant="outline-secondary">
-                        Atrás
-                    </Button>
-                </NavLink>
+                <Container>
+                    <Row className="justify-content-sm-end">
+                        <Col xs lg='2'>
+                            <Button disabled={disabled} variant="outline-primary" type="submit">
+                                {id !== undefined ? "Actualizar" : "Guardar"}
+                            </Button>{' '}
+                        </Col>
+                        <Col xs lg='2'>
+                            <Button
+                                hidden={!disabled}
+                                variant="outline-warning"
+                                onClick={() => setDisabled(!disabled)}
+                            >
+                                Editar
+                            </Button>
+                        </Col>
+                        <Col xs lg='2'>
+                            <NavLink to='/admin/productos'>
+                                <Button variant="outline-secondary">
+                                    Atrás
+                                </Button>
+                            </NavLink>
+                        </Col>
+                    </Row>
+                </Container>
             </Form>
         </Container>
     );

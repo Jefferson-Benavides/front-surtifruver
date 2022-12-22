@@ -1,7 +1,7 @@
 {
   "name": "Surti Fruver",
   "version": "1.0.0",
-  "description": "React para Yard Sale",
+  "description": "Proyecto Ciclo 4",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

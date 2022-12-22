@@ -17,8 +17,8 @@ const MyOrder = () => {
 	return (
 		<aside className="MyOrder">
 			<div className="title-container">
-				<img src={arrow} alt="arrow" />
 				<p className="title">My order</p>
+				<img src={arrow} alt="arrow" />
 			</div>
 			<div className="my-order-content">
 				{state.cart.map(product => {

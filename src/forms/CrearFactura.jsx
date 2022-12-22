@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
 import { Link, NavLink, useParams } from 'react-router-dom';
-import {findFacturaById, listaFacturas} from '../server/Server';
+import { findFacturaById, listaFacturas } from '../server/Server';
 
 const CrearFactura = () => {
 
@@ -16,17 +18,17 @@ const CrearFactura = () => {
             fechaCompra: "",
             productosComprados: [
                 {
-                    idProducto:"",
+                    idProducto: "",
                     nombre: "",
-                    cantidad:0,
-                    precio:0
+                    cantidad: 0,
+                    precio: 0
                 }
             ],
             subtotal: 0
         }
     );
 
-    
+
     useEffect(() => {
         if (id !== undefined) {
             setDisabled(true)
@@ -51,7 +53,7 @@ const CrearFactura = () => {
             <h1>  {id !== undefined ? "Detalle de factura " + id : "Agregar nueva factura"}  </h1>
             <Form className='my-3'>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Id: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Id: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -60,10 +62,10 @@ const CrearFactura = () => {
                         value={factura.id}
                         onChange={handleChange}
                         disabled={disabled}
-                        />
+                    />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Nombre: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Nombre: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -72,10 +74,10 @@ const CrearFactura = () => {
                         onChange={handleChange}
                         value={factura.nombreCompleto}
                         disabled={disabled}
-                        />
+                    />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Fecha de la compra: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Fecha de la compra: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -87,7 +89,7 @@ const CrearFactura = () => {
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Listado productos: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Listado productos: </Form.Label>
                     <Form.Control
                         as="textarea"
                         rows={4}
@@ -95,13 +97,13 @@ const CrearFactura = () => {
                         name="subtotal"
                         onChange={handleChange}
                         value={factura.productosComprados.map(
-                            p => p.nombre + ': '+ p.cantidad +' x ' +p.precio + '\n'
+                            p => p.nombre + ': ' + p.cantidad + ' x ' + p.precio + '\n'
                         )}
                         disabled={disabled}
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>subtotal: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Subtotal: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -111,12 +113,22 @@ const CrearFactura = () => {
                         disabled={disabled}
                     />
                 </Form.Group>
+                <Container>
+                    <Row className="justify-content-sm-end">
+                        <Col xs lg='2'>
+                        </Col>
+                        <Col xs lg='2'>
+                        </Col>
+                        <Col xs lg='2'>
+                            <NavLink to='/admin/facturas'>
+                                <Button variant="outline-secondary">
+                                    Atrás
+                                </Button>
+                            </NavLink>
+                        </Col>
+                    </Row>
+                </Container>
 
-                <NavLink to='/admin/facturas'>
-                <Button variant="outline-secondary">
-                        Atrás
-                </Button>
-                </NavLink>
             </Form>
         </Container>
     );

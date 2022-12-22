@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
 import { NavLink, useParams } from 'react-router-dom';
 import { findUsuarioById, guardarUsuario, listaUsuarios } from '../server/Server';
 
-const CrearUsuario= () => {
+const CrearUsuario = () => {
 
     const { id } = useParams();
 
@@ -14,12 +16,12 @@ const CrearUsuario= () => {
             id: "",
             nombreCompleto: "",
             password: "",
-            email: "" ,
-            rol:""
+            email: "",
+            rol: ""
         }
     );
 
-    
+
     useEffect(() => {
         if (id !== undefined) {
             setDisabled(true)
@@ -55,7 +57,7 @@ const CrearUsuario= () => {
             <h1>  {id !== undefined ? "Detalle de Usuario " + id : "Agregar nuevo Usuario"}  </h1>
             <Form className='my-3' onSubmit={handleSubmit}>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Id: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Id: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -64,10 +66,10 @@ const CrearUsuario= () => {
                         value={usuario.id}
                         onChange={handleChange}
                         disabled={disabled}
-                        />
+                    />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>nombrecompleto: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Nombre completo: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -76,10 +78,10 @@ const CrearUsuario= () => {
                         onChange={handleChange}
                         value={usuario.nombreCompleto}
                         disabled={disabled}
-                        />
+                    />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>password: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Password: </Form.Label>
                     <Form.Control
                         type="text"
                         required
@@ -91,7 +93,7 @@ const CrearUsuario= () => {
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>email: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Email: </Form.Label>
                     <Form.Control
                         type="tel"
                         required
@@ -102,7 +104,7 @@ const CrearUsuario= () => {
                     />
                 </Form.Group>
                 <Form.Group className='lbl-input-grid mb-3'>
-                    <Form.Label>Rol: </Form.Label>
+                    <Form.Label className='lbl-form-bold'>Rol: </Form.Label>
                     <Form.Control
                         type="tel"
                         required
@@ -112,21 +114,31 @@ const CrearUsuario= () => {
                         disabled={disabled}
                     />
                 </Form.Group>
-                <Button disabled={disabled} variant="outline-primary" type="submit">
-                    {id !== undefined ? "Actualizar" : "Guardar"}
-                </Button>{' '}
-                    <Button
-                        hidden={!disabled}
-                        variant="outline-warning"
-                        onClick={() => setDisabled(!disabled)}
-                    >
-                    Editar
-                </Button>
-                <NavLink to='/admin/Usuarios'>
-                <Button variant="outline-secondary">
-                        Atrás
-                    </Button>
-                </NavLink>
+                <Container>
+                    <Row className="justify-content-sm-end">
+                        <Col xs lg='2'>
+                            <Button disabled={disabled} variant="outline-primary" type="submit">
+                                {id !== undefined ? "Actualizar" : "Guardar"}
+                            </Button>{' '}
+                        </Col>
+                        <Col xs lg='2'>
+                            <Button
+                                hidden={!disabled}
+                                variant="outline-warning"
+                                onClick={() => setDisabled(!disabled)}
+                            >
+                                Editar
+                            </Button>{' '}
+                        </Col>
+                        <Col xs lg='2'>
+                            <NavLink to='/admin/Usuarios'>
+                                <Button variant="outline-secondary">
+                                    Atrás
+                                </Button>
+                            </NavLink>
+                        </Col>
+                    </Row>
+                </Container>
             </Form>
         </Container>
     );

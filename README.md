@@ -1,2 +1,2 @@
 # Surti Fruver
-Proyecto ciclo 4 creado con React y Srping Boot
+Proyecto ciclo 4 creado con React y Spring Boot
